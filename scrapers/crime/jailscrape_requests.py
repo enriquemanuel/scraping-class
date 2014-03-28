@@ -1,13 +1,17 @@
-import urllib2
+#basic
 import csv
+import urllib2
+
+#custom
+import requests
 from BeautifulSoup import BeautifulSoup
 
+#start:
 url = 'http://www.showmeboone.com/sheriff/JailResidents/JailResidents.asp'
 
-# Open the HTML file and turn it into a BeautifulSoup object for parsing
-html = urllib2.urlopen(url).read()
-soup = BeautifulSoup(html)
+r = requests.get(url)
 
+soup = BeautifulSoup(r.text)
 
 # The scrape actually starts here. Let's get the table that contains the results.
 only_table = soup.find('table', attrs={'class': 'resultsTable'})
